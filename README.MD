@@ -57,9 +57,8 @@ However, if you find a case where it doesn't work, feel free to modify this code
 The `va_list` is a pointer (char*, see vadefs.h), that can be stored as-is in a `IntPtr`.
 You can pass this pointer to the native methods.
 
-Beware, while doing this project, I ran into two bugs of the .net framework. .net core works just fine :
-- [RuntimeInformation.ProcessArchitecture returns invalid results](https://github.com/dotnet/corefx/issues/25267)
-- The application crashes when returning from the callback, in x86. I don't know why yet
+Beware, while doing this project, I ran into a bugs of the .net framework : [RuntimeInformation.ProcessArchitecture returns invalid results](https://github.com/dotnet/corefx/issues/25267).
+.net core works just fine.
 
 ## Linux x64
 Source : https://www.uclibc.org/docs/psABI-x86_64.pdf at page 52 suggests that va_list is a pointer to a structure with 4 fields (2 unsigned ints and 2 pointers)
@@ -73,10 +72,11 @@ typedef struct {
 } va_list[1];
 ```
 
-Based on my experimentation, you will need to copy the code
+Based on my experimentation, you will need to copy the structure before calling the function.
 
 
 ## Linux x86
+Works mostly like Windows, an IntPtr is enough.
 
 ## Linux ARM
 Source : http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042f/IHI0042F_aapcs.pdf at page 27 has the declaration of va_list for the ARM architecture:
@@ -128,4 +128,4 @@ Be careful: Building both for .net core and msbuild may cause the msbuild to fai
 
 ## Limitations
 - You need to use the `va_list` argument inside the callback before the method returns. Otherwise, the `va_list` will be released.
-- Currently supported platforms are : Windows (x64 only), Linux (x86, x64)
+- Currently supported platforms are : Windows (x86, x64), Linux (x86, x64)
