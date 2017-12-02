@@ -1,6 +1,12 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+#ifdef _WIN32
+#  define EXPORTIT __declspec( dllexport )
+#else
+#  define EXPORTIT __attribute__((visibility("default")))
+#endif
+
 typedef void (*callback) (const char *format, va_list args);
 
 void listifyAndCall(callback cb, const char *format, ...)
@@ -12,6 +18,6 @@ void listifyAndCall(callback cb, const char *format, ...)
     va_end(argsList);
 }
 
-__attribute__((visibility("default"))) void triggerCallback(callback cb) {
+EXPORTIT void triggerCallback(callback cb) {
     listifyAndCall(cb, "hello %s, the answer is %d", "world", 42);
 }

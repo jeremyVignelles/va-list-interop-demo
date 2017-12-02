@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.0.0
-MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va-list-interop", "va-list-interop.csproj", "{FC93441D-679C-43AF-A485-BBF9FF46EDEF}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "va-list-interop", "va-list-interop.csproj", "{FC93441D-679C-43AF-A485-BBF9FF46EDEF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va-list-interop.mono", "va-list-interop.mono.csproj", "{294BA9A6-1A53-441B-A9AF-15BA9A0E0A6C}"
 EndProject
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9F36326-B48B-43F2-847C-4EFDBD2CD181}
 	EndGlobalSection
 EndGlobal

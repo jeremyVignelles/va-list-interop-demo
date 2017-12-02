@@ -6,9 +6,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <RootNamespace>VaListInterop</RootNamespace>
+    <ProjectGuid>{294BA9A6-1A53-441B-A9AF-15BA9A0E0A6C}</ProjectGuid>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>bin\Debug\</OutputPath>
+    <Prefer32Bit>true</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -24,8 +28,10 @@
     <Compile Include="LinuxInterop.cs" />
     <Compile Include="NativeLibrary.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="WindowsInterop.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

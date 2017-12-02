@@ -54,8 +54,12 @@ These findings are based on my observations and shall not be considered as a uni
 However, if you find a case where it doesn't work, feel free to modify this code and make a PR.
 
 ## Windows (x86 & x64)
-The `va_list` is a pointer, that can be stored as-is in a `IntPtr`.
-You can pass this pointer to the native methods
+The `va_list` is a pointer (char*, see vadefs.h), that can be stored as-is in a `IntPtr`.
+You can pass this pointer to the native methods.
+
+Beware, while doing this project, I ran into two bugs of the .net framework. .net core works just fine :
+- [RuntimeInformation.ProcessArchitecture returns invalid results](https://github.com/dotnet/corefx/issues/25267)
+- The application crashes when returning from the callback, in x86. I don't know why yet
 
 ## Linux x64
 Source : https://www.uclibc.org/docs/psABI-x86_64.pdf at page 52 suggests that va_list is a pointer to a structure with 4 fields (2 unsigned ints and 2 pointers)
@@ -90,7 +94,9 @@ TODO: Implement this platform in the demo
 Contributions are welcome!
 
 ## How to build this project
-Build the C source code with cmake:
+Build the C source code
+
+With cmake on linux:
 
 ```
 mkdir nativeLibrary/build
@@ -98,23 +104,28 @@ cd nativeLibrary/build
 cmake ..
 make
 ```
-
 (Come back to the repository root)
 
+Or with Visual studio for windows (With CMake tools installed):
+- Open the nativeLibrary folder in Visual Studio (not as a project).
+- Select "x86-Debug" from the drop down list at the top, build. Again with "x64-Debug"
+
 Build the dotnet project:
-- With Visual Studio (untested yet)
+- With Visual Studio, build the va-list-interop project. You can change the targetFramework in the csproj file, as well as the "Prefer 32 bits" flag.
 - With the `dotnet` command line:
   `dotnet build va-list-interop.csproj`
 - With mono/msbuild :
   `msbuild va-list-interop.mono.csproj`
 
 Run the project from the repository root. On ubuntu, you will need to install `libc6-dev` if it's not already present (to be able to call `libdl` and `vsprintf`).
+- On visual studio, just run the project.
 - With the `dotnet` command line:
   `dotnet run --project va-list-interop.csproj`
 - With the `mono` command line:
   `mono bin/Debug/va-list-interop.mono.exe`
 
-Be careful: Building both for .net core and msbuild may cause the msbuild to fail. Remove the `obj` folder if that happens
+Be careful: Building both for .net core and msbuild may cause the msbuild to fail. Remove the `obj` folder if that happens. On visual studio, please also disable the va-list-interop.mono project.
 
 ## Limitations
 - You need to use the `va_list` argument inside the callback before the method returns. Otherwise, the `va_list` will be released.
+- Currently supported platforms are : Windows (x64 only), Linux (x86, x64)

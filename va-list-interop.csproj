@@ -2,9 +2,13 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Prefer32Bit>true</Prefer32Bit>
+    <TargetFrameworks>net462;netcoreapp2.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
 </Project>
