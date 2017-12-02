@@ -6,9 +6,6 @@
     <TargetFrameworks>net462;netcoreapp2.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
 </Project>

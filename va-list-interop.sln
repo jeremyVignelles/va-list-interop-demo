@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "va-list-interop", "va-list-interop.csproj", "{FC93441D-679C-43AF-A485-BBF9FF46EDEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "va-list-interop.mono", "va-list-interop.mono.csproj", "{294BA9A6-1A53-441B-A9AF-15BA9A0E0A6C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{FC93441D-679C-43AF-A485-BBF9FF46EDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC93441D-679C-43AF-A485-BBF9FF46EDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC93441D-679C-43AF-A485-BBF9FF46EDEF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{294BA9A6-1A53-441B-A9AF-15BA9A0E0A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{294BA9A6-1A53-441B-A9AF-15BA9A0E0A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{294BA9A6-1A53-441B-A9AF-15BA9A0E0A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{294BA9A6-1A53-441B-A9AF-15BA9A0E0A6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

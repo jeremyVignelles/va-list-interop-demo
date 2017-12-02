@@ -113,19 +113,15 @@ Or with Visual studio for windows (With CMake tools installed):
 Build the dotnet project:
 - With Visual Studio, build the va-list-interop project. You can change the targetFramework in the csproj file, as well as the "Prefer 32 bits" flag.
 - With the `dotnet` command line:
-  `dotnet build va-list-interop.csproj`
-- With mono/msbuild :
-  `msbuild va-list-interop.mono.csproj`
+  `dotnet build va-list-interop.csproj --framework netcoreapp2.0`
 
 Run the project from the repository root. On ubuntu, you will need to install `libc6-dev` if it's not already present (to be able to call `libdl` and `vsprintf`).
 - On visual studio, just run the project.
 - With the `dotnet` command line:
-  `dotnet run --project va-list-interop.csproj`
+  `dotnet run --project va-list-interop.csproj --framework netcoreapp2.0`
 - With the `mono` command line:
   `mono bin/Debug/va-list-interop.mono.exe`
 
-Be careful: Building both for .net core and msbuild may cause the msbuild to fail. Remove the `obj` folder if that happens. On visual studio, please also disable the va-list-interop.mono project.
-
 ## Limitations
 - You need to use the `va_list` argument inside the callback before the method returns. Otherwise, the `va_list` will be released.
-- Currently supported platforms are : Windows (x86, x64), Linux (x86, x64)
+- Currently supported platforms are : Windows .net framework & .net core (x86, x64), Linux .net core (x64), Linux mono (x86, x64)
