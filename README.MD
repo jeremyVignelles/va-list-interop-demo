@@ -74,6 +74,8 @@ typedef struct {
 
 Based on my experimentation, you will need to copy the structure before calling the function.
 
+## macOS x64
+Works mostly like Linux, tested with .NET Core 2.
 
 ## Linux x86
 Works mostly like Windows, an IntPtr is enough.
@@ -96,7 +98,7 @@ Contributions are welcome!
 ## How to build this project
 Build the C source code
 
-With cmake on linux:
+With cmake on Linux/macOS:
 
 ```
 mkdir nativeLibrary/build
@@ -112,16 +114,22 @@ Or with Visual studio for windows (With CMake tools installed):
 
 Build the dotnet project:
 - With Visual Studio, build the va-list-interop project. You can change the targetFramework in the csproj file, as well as the "Prefer 32 bits" flag.
-- With the `dotnet` command line:
+- With the `dotnet` CLI on Windows/macOS/Linux:
   `dotnet build va-list-interop.csproj --framework netcoreapp2.0`
 
 Run the project from the repository root. On ubuntu, you will need to install `libc6-dev` if it's not already present (to be able to call `libdl` and `vsprintf`).
 - On visual studio, just run the project.
-- With the `dotnet` command line:
+- With the `dotnet` CLI on Windows/macOS/Linux:
   `dotnet run --project va-list-interop.csproj --framework netcoreapp2.0`
 - With the `mono` command line:
   `mono bin/Debug/va-list-interop.mono.exe`
 
 ## Limitations
-- You need to use the `va_list` argument inside the callback before the method returns. Otherwise, the `va_list` will be released.
-- Currently supported platforms are : Windows .net framework & .net core (x86, x64), Linux .net core (x64), Linux mono (x86, x64)
+You need to use the `va_list` argument inside the callback before the method returns. Otherwise, the `va_list` will be released.
+
+Currently supported platforms are: 
+* Windows with .NET Framework, 
+* Windows with .NET Core (x86, x64),
+* Linux with .NET Core (x64),
+* Linux with Mono (x86, x64),
+* macOS with .NET Core (x64).
