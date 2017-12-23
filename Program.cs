@@ -11,9 +11,9 @@ namespace VaListInterop
     {
         public static void Main(string[] args)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                RunLinux();
+                RunUnix();
             }
             else if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -101,7 +101,7 @@ namespace VaListInterop
             }
         }
 
-        public static void RunLinux()
+        public static void RunUnix()
         {
             string arch;
             NativeLibrary.Callback callback;
@@ -122,7 +122,8 @@ namespace VaListInterop
             Console.WriteLine(arch);
 
             // Load the correct library
-            var handle = LinuxInterop.dlopen(Path.Combine(Environment.CurrentDirectory, "nativeLibrary", "build", $"libnativeLibrary.{arch}.so"), LinuxInterop.RTLD_LAZY);
+            var nativeExtension = RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "so " : "dylib";
+            var handle = LinuxInterop.dlopen(Path.Combine(Environment.CurrentDirectory, "nativeLibrary", "build", $"libnativeLibrary.{arch}.{nativeExtension}"), LinuxInterop.RTLD_LAZY);
             if (handle == IntPtr.Zero)
             {
                 Console.Error.WriteLine("Failed to load native library");
