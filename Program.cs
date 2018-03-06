@@ -4,6 +4,7 @@ namespace VaListInterop
 {
     using System;
     using System.IO;
+    using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Text;
 
@@ -56,7 +57,8 @@ namespace VaListInterop
             Console.WriteLine(arch);
 
             // Load the correct library
-            var handle = WindowsInterop.LoadLibrary(Path.Combine(Environment.CurrentDirectory, "nativeLibrary", "build", arch, "nativeLibrary.dll"));
+            var projectDir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))));
+            var handle = WindowsInterop.LoadLibrary(Path.Combine(projectDir, "nativeLibrary", "build", arch, "nativeLibrary.dll"));
             if (handle == IntPtr.Zero)
             {
                 Console.Error.WriteLine("Failed to load native library");
