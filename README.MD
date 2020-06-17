@@ -29,6 +29,8 @@ In other words, `libvlc_log_set` stores your callback in memory, and calls it wh
 
 In .net, that's another story...
 
+For reference, [we asked for something in the dotnet/runtime repo](https://github.com/dotnet/runtime/issues/9316), but it didn't went far because we lacked a formal proposal.
+
 This repository is here to share my findings.
 
 ## The objective
